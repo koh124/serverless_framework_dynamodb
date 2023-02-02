@@ -1,0 +1,25 @@
+Resources: # リソース一覧を定義する
+  usersTable: # リソース名称は任意
+    Type: AWS::DynamoDB::Table # Typeプロパティで何のリソースかを指定する（DynamoDBのテーブル）
+    # "Properties"はS3でもDynamoDBテーブルでも他のリソースでも指定する
+    Properties:
+      TableName: usersTable
+      # usersTableのemail, addressがstring型(S)であることを示す
+      # AttributeTypeはS, N, Bが選べる(string, number, boolean)
+      AttributeDefinitions:
+        - AttributeName: email
+          AttributeType: S
+        - AttributeName: address
+          AttributeType: S
+      # KeySchemaはキーの設定を示す
+      # emailがパーティションキー（HASHキー）
+      # addressがソートキーであることを示している
+      KeySchema:
+        - AttributeName: email
+          KeyType: HASH
+        - AttributeName: address
+          KeyType: RANGE
+      # スループットの指定
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1

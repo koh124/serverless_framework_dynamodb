@@ -1,0 +1,26 @@
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+    # バケット命名規則
+    # ・ドメイン名と同じ書式で命名する "sample.bucket.s3" 等
+    # ・バケット名称に英大文字は使えない
+    # ・同じリージョン内のユーザーの中で一意である必要がある
+      BucketName: ${self:provider.environment.S3_BUCKET}.mys3bucket2023
+
+# S3IamPolicy:
+#   Type: AWS::IAM::Policy
+#   DependsOn: Bucket
+#   Properties:
+#     PolicyName: lambda-s3
+#     PolicyDocument:
+#       Version: "2023-2-2"
+#       Statement:
+#         - Effect: Allow
+#           Action:
+#             - s3:GetObject
+#             - s3:PutObject
+#             - s3:DeleteObject
+#           Resource: arn:aws:s3:::${self:provider.environment.S3_BUCKET}
+#     Roles:
+#       - Ref: IamRoleLambdaExecution

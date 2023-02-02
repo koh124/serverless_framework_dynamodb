@@ -1,0 +1,16 @@
+参考にしたサイト
+https://qiita.com/r-wakatsuki/items/118ef8fb509d145af306
+boto3のupdate構文を宣言的に理解するのに参考になった
+
+https://dev.classmethod.jp/articles/dynamodb-update-expression-actions/
+boto3のUpdateExpressionの意味を理解するのにとても助けになった
+
+https://www.ragate.co.jp/blog/articles/12084
+serverless frameworkの色んな指定方法や構文を閲覧するのに活用できる
+
+https://qiita.com/maaaashin324/items/014d2e5fc29d31f45cae
+serverless.ymlの各要素の解説が参考になった
+
+https://blog.katsubemakito.net/aws/lambda-with-serverless-framework6
+[AWS] Serverless FrameworkでRESTfulAPIを作成する (S3編)
+
