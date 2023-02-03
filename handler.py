@@ -29,7 +29,6 @@ def lambdaHandler(event, context):
     # 【update】updateにはいくつかルールがある
     # ・set
     # フィールドが存在すれば更新する。存在しなければカラムを追加する。
-
     option = {
         # Keyを指定してupdateするデータを絞り込み
         'Key': Key,
@@ -47,15 +46,39 @@ def lambdaHandler(event, context):
             "#age": "age",
         },
         'ExpressionAttributeValues': {
-            ":age": "25"
+            ":age": "25",
         }
     }
 
     # update_itemはキーワード引数のみを受け付ける
     dynamoTable.update_item(**option) # **はjsのスプレッド構文みたいにdictの引数を分割して渡せる
 
+    # 【delete】
+    # deleteはセット型に対してのみ使用可能
+    # "#a"が示すプロパティの値から、":a"が示すset型の値を削除する
+    # セット型の中身が空になるとプロパティごと消滅する
+    # option1 = {
+    #     "UpdateExpression": "delete #a :a, #b :a",
+    #     "ExpressionAttributeNames": {
+    #         "#a": "a",
+    #         "#b": "b"
+    #     },
+    #     "ExpressionAttributeValues": {
+    #         ":a": {2}
+    #     }
+    #     ===before===
+    #     {
+    #         "a": {1, 2, 3},
+    #         "b": {2}
+    #     }
+    #     ===after===
+    #     {
+    #         "a": {1, 3}
+    #     }
+    # }
+
+
     body = {
-        "message": "Go Serverless v1.0! Your function executed successfully!",
         "input": event,
         "data": item
     }
