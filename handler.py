@@ -10,6 +10,16 @@ boto3.resource
 dynamodb = boto3.resource('dynamodb')
 
 def lambdaHandler(event, context):
+    return {
+        'statusCode': 200,
+        "headers": {
+            "Access-Control-Allow-Origin": "*",
+        },
+        'body': json.dumps({
+            "message": "helloworld"
+        })
+    }
+
     # DynamoDBテーブルからデータを取得する
 
     tableName = "usersTable"

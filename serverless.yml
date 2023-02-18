@@ -7,6 +7,10 @@ provider:
   runtime: python3.9
   region: ap-northeast-1
   stage: dev
+  apiGateway:
+    apiKeys:
+      - name: mykeysdfg
+        value: gfdshdjfgjh77jkljgfffj
 
   # AWSに環境変数を設定するにはこうする
   # この場合は「ステージ名.storage」というプレフィックスを登録できる
@@ -61,6 +65,13 @@ provider:
 functions:
   useDynamoDB:
     handler: handler.lambdaHandler
+    events:
+      - http:
+          path: /hello
+          method: get
+          private: true
+          cors: true
+
 
 resources:
   # 他のファイルのインポート
